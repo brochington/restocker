@@ -27,10 +27,10 @@
 	<meta name="twitter:title" content="{{title}}">
 	<meta name="twitter:description" content="{{description}}">
 	<meta name="twitter:url" content="{{url}}">
-	<meta name="twitter:image" content="/img/brand/logo.png">
+	<meta name="twitter:image" content="/pub/img/restocker_panel.png">
 
 	<!-- Fav Icon -->
-	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="/pub/img/favicon.png" rel="shortcut icon" type="image/x-icon">
 
 	<!--Application CSS Files-->
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
@@ -47,6 +47,8 @@
 	<section class="content">
 		<section class="container">
 			{% block content %}{% endblock %}
+
+			<div style="clear:both;"></div>
 		</section>
 	</section>
 

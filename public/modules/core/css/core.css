@@ -1,3 +1,7 @@
+.HomeController .content {
+	background: #333;
+}
+
 .content {
 	margin-top: 50px;
 }
