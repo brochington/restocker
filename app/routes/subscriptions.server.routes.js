@@ -9,6 +9,9 @@ module.exports = function(app) {
 		.get(subscriptions.list)
 		.post(users.requiresLogin, subscriptions.create);
 
+	app.route('/subscriptions/createSubscription')
+		.post(subscriptions.createSubscription);
+
 	app.route('/subscriptions/:subscriptionId')
 		.get(subscriptions.read)
 		.put(users.requiresLogin, subscriptions.hasAuthorization, subscriptions.update)

@@ -10,6 +10,12 @@ var mongoose = require('mongoose'),
 
 exports.getList = function(req, res){
 	console.log('reached getList...');
+	User.findById(req.user._id, function(err, resp){
+		console.log(resp);
+		// var modoAccounts = resp;
+		res.send(resp);
+	});
+	
 };
 
 exports.addCard = function(req, res){
@@ -56,7 +62,8 @@ exports.addCard = function(req, res){
 				expiry: req.body.expiry,
 				card_security: req.body.cardSecurity,
 				zip_code: req.body.zipcode.replace(/-/g, ''),
-				card_address: req.body.address + ' ' + req.body.city
+				card_address: req.body.address + ' ' + req.body.city,
+				state: req.body.state.abbr
 			});
 
 			user.save(function(){
