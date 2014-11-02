@@ -14,6 +14,10 @@ angular.module('subscriptions').controller('YourSubscriptionsController', ['$sco
 				console.log('staples, man.', val);
 				$scope.staplesData = val.results.collection1;
 			});
+
+			$http.get('/modoaccount/getList').success(function(val){
+				console.log('getListCallback');
+			});
 		};
 	}
 ]);

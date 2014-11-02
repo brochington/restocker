@@ -9,9 +9,12 @@ angular.module('subscriptions').controller('SubscribeItemController', ['$scope',
 		$scope.subscribeToItem = function(index, data){
 			console.log('askjfhaskjd');
 			console.log(index, data);
+			// ngToast.create('You subscribed to: ' + data.toString());
 			$http.post('/subscriptions/createSubscription', data).success(function(){
 				console.log('yo man, it worked.');
+				ngToast.create('You subscribed to: ' + data);
 			});
+
 		};
 	}]);
 
