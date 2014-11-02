@@ -16,6 +16,7 @@ exports.addCard = function(req, res){
 	console.log('reached addCard');
 	console.log('user: ', req.user);
 	console.log('body:', req.body);
+	console.log('state: ', req.body.state.abbr);
 
 	var params = {
 		consumer_key: modo.apiKey,
@@ -25,38 +26,38 @@ exports.addCard = function(req, res){
 		expiry: req.body.expiry,
 		card_security: req.body.cardSecurity,
 		zip_code: req.body.zipcode.replace(/-/g, ''),
-		card_address: req.body.address + ' ' + req.body.city + req.body.state
+		card_address: req.body.address + ' ' + req.body.city
 	};
 
-	console.log('params: ', params);
+	// console.log('params: ', params);
 
 	modo.postRequest('card', 'add', params, function (err, resp){
 		if(err){console.log(err);}
 
 		resp = JSON.parse(resp);
-		console.log('user id: ', req.user._id);
+		// console.log('user id: ', req.user._id);
 		User.findById(req.user._id, function(err, user){
-			console.log('new user: ', user);
+			// console.log('new user: ', user);
 
 			// var newUser = user.toObject();
 
-			console.log(user.modoAccounts);
+			// console.log(user.modoAccounts);
 
-			console.log(user.modoAccounts);
-			user.modoAccounts.push('hello');
+			// console.log(user.modoAccounts);
+			// user.modoAccounts.push('hello');
 
 			user.save(function(err, something){
 				if(err){console.log(err);}
 			});
 		
 
-			// user.modoAccounts.push({
-			// 	card_number: req.body.cardNumber,
-			// 	expiry: req.body.expiry,
-			// 	card_security: req.body.cardSecurity,
-			// 	zip_code: req.body.zipcode.replace(/-/g, ''),
-			// 	card_address: req.body.address + ' ' + req.body.city + req.body.state
-			// });
+			user.modoAccounts.push({
+				card_number: req.body.cardNumber,
+				expiry: req.body.expiry,
+				card_security: req.body.cardSecurity,
+				zip_code: req.body.zipcode.replace(/-/g, ''),
+				card_address: req.body.address + ' ' + req.body.city
+			});
 
 			user.save(function(){
 				console.log('saved, I think.');
