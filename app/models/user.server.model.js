@@ -89,14 +89,9 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-	// modoAccounts: [{
-	// 	card_number: String,
-	// 	expiry: String,
-	// 	card_security: String,
-	// 	zip_code: String,
-	// 	card_address: String
-	// }],
+	subscriptionProducts: [],
 	modoAccounts: [],
+	taskInterval: String,
 	provider: {
 		type: String,
 		required: 'Provider is required'

@@ -4,6 +4,17 @@
 	</div>
 	<div class="col-md-12">
 		<h2>{{testing}}</h2>
+		<!-- <p>{{staplesData}}</p> -->
+		<div ng-repeat="product in staplesData" data-ng-controller="SubscribeItemController">
+		<div ng-repeat="product in staplesData">
+			<a href="{{product.property3.href}}"><img src="{{product.property3.src}}" alt="{{product.property3.alt}}"></a>
+			<p>{{product.property1.text}}</p>
+			<p>{{product.property2}}</p>
+			<p>Price: {{product.property4}}</p>
+			<p>{{product.property5}}</p>
+			<select ng-options="d.name for d in deliveryScheduleOptions" data-ng-model="product.deliverySchedule"></select>
+			<button ng-click="subscribeToItem($index, staplesData[$index])">Subscribe!</button>
+		</div>
 	</div>
 
 </section>

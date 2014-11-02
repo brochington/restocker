@@ -6,7 +6,9 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 
 		$scope.addCard = {};
 
-		$scope.states = [{abbr: 'NY'},{abbr: 'CA'},{abbr: 'MO'}, {abbr: 'MA'}];
+		$scope.states = [{abbr: 'New York'},{abbr: 'California'},{abbr: 'Hawaii'}, {abbr: 'North Dakota'}];
+
+		$scope.modoAccounts = [];
 
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
@@ -74,7 +76,11 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 
 		$scope.init = function(){
 			console.log('init...');
-			var something = Modoaccounts.getList({modoaccountResource: 'getList'});
+			// var modoAccounts = Modoaccounts.getList({modoaccountResource: 'getList'})
+			$http.get('/modoaccounts/getList').success(function(val){
+				console.log('got a response!!!', val);
+				$scope.modoAccounts = val.modoAccounts;
+			});
 		};
 
 		$scope.accountFormVisible = false;

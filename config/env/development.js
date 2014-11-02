@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/subscribeit-dev',
+	// db: 'mongodb://localhost/subscribeit-dev',
+	db: 'mongodb://webui:123456@ds053497.mongolab.com:53497/restocker',
 	app: {
 		title: 'SubscribeIT - Development Environment'
 	},

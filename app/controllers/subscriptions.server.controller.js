@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
+	User = mongoose.model('User'),
 	Subscription = mongoose.model('Subscription'),
 	_ = require('lodash');
 
@@ -102,4 +103,28 @@ exports.hasAuthorization = function(req, res, next) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();
+};
+
+exports.createSubscription = function(req, res){
+	console.log('reached it man.');
+	console.log('local user: ', req.user._id);
+	console.log(req.body);
+	User.findById(req.user._id, function(err, user){
+		console.log('user: ', user);
+		user.subscriptionProducts.push({
+			itemText: req.body.property1.text,
+			itemLink: req.body.property1.href,
+			price: req.body.property2,
+			imgSrc: req.body.property3.src,
+			imgHref: req.body.property3.href,
+			imgAlt: req.body.property3.alt,
+			taskID: Math.floor((Math.random() * 10000000000000000) + 1),
+			deliverySchedule: req.body.deliverySchedule,
+			taskHasStarted: false
+
+		});
+
+		user.save();
+
+	});
 };
